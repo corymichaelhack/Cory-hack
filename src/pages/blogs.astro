@@ -1,0 +1,23 @@
+---
+import Main from "../layouts/Main.astro";
+
+const blogs = await Astro.glob<{
+  title: string;
+  subtitle: string;
+}>("../pages/blogs/*.md");
+---
+
+<Main title="Cory Hack | Blog">
+  <h1>Blogs</h1>
+  <ol>
+    {
+      blogs.map((blog) => (
+        <li class="blogs__list">
+          <a href={blog.url} class="blog__link">
+            {blog.frontmatter.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</Main>
